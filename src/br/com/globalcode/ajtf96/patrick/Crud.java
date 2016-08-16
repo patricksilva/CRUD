@@ -18,6 +18,24 @@ public class Crud {
 	private static final String STR_CON = "jdbc:mysql://localhost:3306/" + NOME_BANCO;
 	private static final String USER = "aj";
 	private static final String PASSWORD = "ajtf96%";
+	private String getConnectionResult="";
+	
+	public Crud() {
+		try (Connection conn = DriverManager.getConnection(STR_CON, USER, PASSWORD)) {
+			this.setGetConnectionResult("Conexão realizada com sucesso");
+		} catch (SQLException e) {
+			this.setGetConnectionResult("ERRO! Falha ao obter conexão");
+			e.printStackTrace();
+		}
+	}
+	
+	public String getGetConnectionResult() {
+		return this.getConnectionResult;
+	}
+	
+	private void setGetConnectionResult(final String message) {
+		this.getConnectionResult = message;
+	}
 	
 	public void create() {
 		//TODO
